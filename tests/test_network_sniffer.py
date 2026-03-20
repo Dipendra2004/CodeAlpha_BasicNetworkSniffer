@@ -5,8 +5,8 @@ import network_sniffer as ns
 
 class NetworkSnifferTests(unittest.TestCase):
     def test_extract_guid(self) -> None:
-        iface = r"\\Device\\NPF_{B131682A-177E-4D5B-9B70-480E57542E1B}"
-        self.assertEqual(ns._extract_guid(iface), "B131682A-177E-4D5B-9B70-480E57542E1B")
+        iface = r"\\Device\\NPF_{11111111-2222-3333-4444-555555555555}"
+        self.assertEqual(ns._extract_guid(iface), "11111111-2222-3333-4444-555555555555")
 
     def test_extract_guid_missing(self) -> None:
         self.assertIsNone(ns._extract_guid("Wi-Fi"))

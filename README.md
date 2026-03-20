@@ -95,8 +95,8 @@ python network_sniffer.py --read-pcap demo_capture.pcap --protocol all --verbose
 ## Sample Output
 
 ```text
-2026-03-20T22:28:40.828 | UDP   [DNS]  | 10.0.0.5 -> 8.8.8.8 53123->53 | len=71 | DNS query example.com
-2026-03-20T22:28:40.830 | TCP   [TLS]  | 10.0.0.5 -> 142.250.183.78 50000->443 | len=54 | flags=S seq=0
+2026-03-20T22:28:40.828 | UDP   [DNS]  | 192.0.2.10 -> 198.51.100.53 53123->53 | len=71 | DNS query example.com
+2026-03-20T22:28:40.830 | TCP   [TLS]  | 192.0.2.10 -> 203.0.113.44 50000->443 | len=54 | flags=S seq=0
 
 Capture Summary
 Duration: 0.02s
