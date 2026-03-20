@@ -123,6 +123,16 @@ Action: verify adapter index, generate traffic during capture, and avoid inactiv
 - Npcap/WinPcap unavailable message
 Action: reinstall Npcap with compatibility mode and retry from admin terminal.
 
+## Testing
+
+```powershell
+python -m unittest discover -s tests -v
+```
+
+## CI
+
+GitHub Actions CI is configured in `.github/workflows/ci.yml` and runs on push/PR to `main`.
+
 ## Roadmap
 
 - Connection/flow tracking dashboards
