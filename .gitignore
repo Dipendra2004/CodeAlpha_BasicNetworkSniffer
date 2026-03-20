@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.log
+sniffer_*_log.txt
+*.pcap
+*.jsonl
+.venv/
+.env
+.vscode/
