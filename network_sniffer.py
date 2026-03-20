@@ -293,6 +293,29 @@ class AdvancedSniffer:
             self.close()
             self.stats.print_summary()
 
+    def run_pcap(self, pcap_path: str, count: int) -> None:
+        print("=" * 90)
+        print(f"Offline source:   {pcap_path}")
+        print(f"Protocol filter:  {self.protocol_filter}")
+        print(f"Verbose payload:  {self.verbose}")
+        print("=" * 90)
+
+        processed = 0
+        try:
+            with PcapReader(pcap_path) as reader:
+                for packet in reader:
+                    if self.stopping:
+                        break
+                    self._packet_handler(packet)
+                    processed += 1
+                    if count > 0 and processed >= count:
+                        break
+        except FileNotFoundError:
+            print(f"PCAP file not found: {pcap_path}")
+        finally:
+            self.close()
+            self.stats.print_summary()
+
 
 def _extract_guid(interface_name: str) -> Optional[str]:
     match = re.search(r"\{([0-9A-Fa-f-]+)\}", interface_name)
@@ -371,29 +394,6 @@ def print_interface_list(available_ifaces: list[str]) -> None:
         if item["ips"]:
             print(f"    ips:  {', '.join(str(ip) for ip in item['ips'])}")
     print("\nLegend: '*' marks the default-route interface (usually active for internet traffic).")
-
-    def run_pcap(self, pcap_path: str, count: int) -> None:
-        print("=" * 90)
-        print(f"Offline source:   {pcap_path}")
-        print(f"Protocol filter:  {self.protocol_filter}")
-        print(f"Verbose payload:  {self.verbose}")
-        print("=" * 90)
-
-        processed = 0
-        try:
-            with PcapReader(pcap_path) as reader:
-                for packet in reader:
-                    if self.stopping:
-                        break
-                    self._packet_handler(packet)
-                    processed += 1
-                    if count > 0 and processed >= count:
-                        break
-        except FileNotFoundError:
-            print(f"PCAP file not found: {pcap_path}")
-        finally:
-            self.close()
-            self.stats.print_summary()
 
 
 def build_parser() -> argparse.ArgumentParser:
