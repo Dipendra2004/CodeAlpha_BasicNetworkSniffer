@@ -50,6 +50,12 @@ pip install -r requirements.txt
 
 ## Command Reference
 
+### 0) Check tool version
+
+```powershell
+python network_sniffer.py --version
+```
+
 ### 1) List interfaces (recommended first step)
 
 ```powershell

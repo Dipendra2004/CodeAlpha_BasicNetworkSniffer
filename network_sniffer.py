@@ -12,6 +12,8 @@ from typing import Any, Dict, Optional
 logging.getLogger("scapy.runtime").setLevel(logging.ERROR)
 logging.getLogger("scapy.loading").setLevel(logging.ERROR)
 
+APP_VERSION = "1.1.0"
+
 from scapy.all import ARP, DNS, ICMP, IP, IPv6, Raw, TCP, UDP, PcapReader, PcapWriter, conf, get_if_list, resolve_iface, sniff
 
 
@@ -398,6 +400,7 @@ def print_interface_list(available_ifaces: list[str]) -> None:
 
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description="Advanced Network Packet Sniffer")
+    parser.add_argument("--version", action="version", version=f"%(prog)s {APP_VERSION}")
     parser.add_argument("interface", nargs="?", help="Network interface to sniff (example: Wi-Fi)")
     parser.add_argument("--iface-index", type=int, default=None, help="Select interface by index from --list-interfaces")
     parser.add_argument("--count", type=int, default=0, help="Number of packets to capture (0 = unlimited)")
